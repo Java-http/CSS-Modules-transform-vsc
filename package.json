@@ -2,6 +2,7 @@
 	"name": "CSS-Modules-transform",
 	"displayName": "CSS-Modules-transform",
 	"description": "CSS-Modules-transform",
+	"icon":"icon.png",
 	"publisher": "jingxiu",
   "repository": {
     "type": "git",

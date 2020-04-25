@@ -11,3 +11,5 @@
 
 - `conf.cssModuleTransform.styleVariable` - 默认`Style`
 - `conf.cssModuleTransform.ignorePrefix` - 默认为空
+
+![Jietu20200425-192616副本.gif](https://i.loli.net/2020/04/25/C4wdNUoa5BLA1q6.gif)
