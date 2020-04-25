@@ -10,16 +10,26 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:CSS-Modules-transform.helloWorld"
+		"onCommand:CSS-Modules-transform.cssModulesTransform"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "CSS-Modules-transform.helloWorld",
-				"title": "Hello World"
+				"command": "CSS-Modules-transform.cssModulesTransform",
+				"title": "cssModulesTransform"
 			}
-		]
+		],
+		"menus":{
+			"editor/context":[
+				{
+					"when": "editorHasSelection",
+					"command": "CSS-Modules-transform.cssModulesTransform",
+					"alt": "CSS-Modules-transform.cssModulesTransform",
+					"group": "navigation"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
