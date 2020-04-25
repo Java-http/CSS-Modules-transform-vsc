@@ -13,3 +13,8 @@
 - `conf.cssModuleTransform.ignorePrefix` - 默认为空
 
 ![Jietu20200425-192616副本.gif](https://i.loli.net/2020/04/25/C4wdNUoa5BLA1q6.gif)
+
+> 注意点:  
+> 插件不支持类名带`-`连字符,请选择小驼峰命名规则,   
+> eg. `className="pre-A" ===> className="preA"`
+
