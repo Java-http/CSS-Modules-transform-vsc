@@ -2,6 +2,11 @@
 	"name": "CSS-Modules-transform",
 	"displayName": "CSS-Modules-transform",
 	"description": "CSS-Modules-transform",
+	"publisher": "jingxiu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Java-http/CSS-Modules-transform-vsc"
+  },
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.44.0"
