@@ -1,7 +1,7 @@
 {
 	"name": "CSS-Modules-transform",
 	"displayName": "CSS-Modules-transform",
-	"description": "CSS-Modules-transform",
+	"description": "css modules transform",
 	"icon":"icon.png",
 	"publisher": "jingxiu",
   "repository": {
@@ -29,7 +29,6 @@
 		"menus":{
 			"editor/context":[
 				{
-					"when": "editorHasSelection",
 					"command": "CSS-Modules-transform.cssModulesTransform",
 					"alt": "CSS-Modules-transform.cssModulesTransform",
 					"group": "navigation"
