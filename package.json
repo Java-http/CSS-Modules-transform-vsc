@@ -20,6 +20,30 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration": [
+			{
+				"title": "CSS Modules Transform 插件配置变量名称",
+				"properties": {
+					"conf.cssModuleTransform.styleVariable": {
+						"type": "string",
+						"default": "Style",
+						"description": "CSS Modules Transform 插件配置变量名称,默认为 Style",
+						"scope": "window"
+					}
+				}
+			},
+			{
+				"title": "CSS Modules Transform 插件配置忽略匹配前缀",
+				"properties": {
+					"conf.cssModuleTransform.ignorePrefix": {
+						"type": ["string","array"],
+						"default": "",
+						"description": "CSS Modules Transform 插件配置忽略匹配前缀,默认为空",
+						"scope": "window"
+					}
+				}
+			}
+		],
 		"commands": [
 			{
 				"command": "CSS-Modules-transform.cssModulesTransform",
