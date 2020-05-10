@@ -1,4 +1,4 @@
-# CSS-Modules-transform README
+# CSS-Modules-transform
 
 - 支持`jsx`,`html`格式
 - 可配置参数
@@ -24,4 +24,7 @@
 
 ![Jietu20200425-192616副本.gif](https://i.loli.net/2020/04/25/C4wdNUoa5BLA1q6.gif)
 
+## 快捷键
 
+- `Windows` : `ctrl+m`
+- `Mac` : `cmd+m`
