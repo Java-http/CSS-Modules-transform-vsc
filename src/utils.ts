@@ -7,8 +7,12 @@ export function trim(str:string){
 }
 
 /** 匹配单词前缀 */
-export function matchPrefix(ignorePrefix:string,word:string){
-  return ignorePrefix && new RegExp(`^${ignorePrefix}`).test(word);
+export function matchPrefix(ignorePrefix:string|string[],word:string):boolean{
+  if(typeof ignorePrefix === 'string'){
+    return !!ignorePrefix && new RegExp(`^${ignorePrefix}`).test(word);
+  }else{
+    return !!ignorePrefix.filter(n=>!!n && new RegExp(`^${n}`).test(word)).length;
+  }
 }
 
 /** 获取配置 */
