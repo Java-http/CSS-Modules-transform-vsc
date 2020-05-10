@@ -31,7 +31,7 @@ export function transform(str:string,conf: ReturnType<typeof getConf>){
   const {styleVariable,ignorePrefix} = conf;
   const className = /react/.test(vscode.window.activeTextEditor?.document.languageId + '') ? 'className' : 'class';
 
-  return str.replace(new RegExp(`(${className})="([\\w\\s]+)"`,"g"),(_,$1,$2)=>{
+  return str.replace(new RegExp(`(${className})\\s*=\\s*"([\\w\\s-]+)"`,"g"),(_,$1,$2)=>{
     let re='';
     let arr=[];
     let className = $1;
@@ -40,28 +40,38 @@ export function transform(str:string,conf: ReturnType<typeof getConf>){
     if(trim(value)==='') {return `${className}=""`;};
 
     arr=trim(value).split(" ");
+
+    // 单个类名的情况
     if(arr.length===1){
       if(matchPrefix(ignorePrefix,arr[0])) {
         re = `${className}="${arr[0]}"`;
+      }else if(/-/.test(arr[0])){
+        re = `${className}={${styleVariable}["${arr[0]}"]}`;
       }else{
         re = `${className}={${styleVariable}.${arr[0]}}`;
       }
-    }else{
-      let isAllIgnore = true;
-      let str=arr.map((item:string)=>{
-        if(matchPrefix(ignorePrefix,item)) {
-          return item;
-        }else{
-          isAllIgnore = false;
-          return `\${${styleVariable}.${item}}`;
-        }
-      }).join(" ");
 
-      if(isAllIgnore){
-        re = `${className}="${str}"`;
+      return re;
+    }
+    
+    // 多个类名的情况
+    let isAllIgnore = true;
+    let str=arr.map((item:string)=>{
+      if(matchPrefix(ignorePrefix,item)) {
+        return item;
+      }else if(/-/.test(item)){
+        isAllIgnore = false;
+        return `\${${styleVariable}["${item}"]}`;
       }else{
-        re = `${className}={\`${str}\`}`;
+        isAllIgnore = false;
+        return `\${${styleVariable}.${item}}`;
       }
+    }).join(" ");
+
+    if(isAllIgnore){
+      re = `${className}="${str}"`;
+    }else{
+      re = `${className}={\`${str}\`}`;
     }
 
     return re;

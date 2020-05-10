@@ -11,6 +11,12 @@
 
 ![Jietu20200505-195826副本.gif](https://i.loli.net/2020/05/05/RxwTh78mv9UyaA5.gif)
 
+**当存在`-`连字符的情况**
+
+![Jietu20200510-131636副本.gif](https://i.loli.net/2020/05/10/Om6vf1BMuA5HcN8.gif)
+
+> 不太推荐使用-,太多容易花~
+
 ## 可选配置
 
 - `conf.cssModuleTransform.styleVariable` - 默认`Style`
@@ -18,7 +24,4 @@
 
 ![Jietu20200425-192616副本.gif](https://i.loli.net/2020/04/25/C4wdNUoa5BLA1q6.gif)
 
-> 注意点:  
-> 插件不支持类名带`-`连字符,请选择小驼峰命名规则,   
-> eg. `className="pre-A" ===> className="preA"`
 
