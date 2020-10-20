@@ -2,12 +2,12 @@
 	"name": "CSS-Modules-transform",
 	"displayName": "CSS-Modules-transform",
 	"description": "css modules transform 用于将 css 转换为 css modules语法",
-	"icon":"icon.png",
+	"icon": "icon.png",
 	"publisher": "jingxiu",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Java-http/CSS-Modules-transform-vsc"
-  },
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Java-http/CSS-Modules-transform-vsc"
+	},
 	"version": "0.0.4",
 	"engines": {
 		"vscode": "^1.44.0"
@@ -36,7 +36,10 @@
 				"title": "CSS Modules Transform 插件配置忽略匹配前缀",
 				"properties": {
 					"conf.cssModuleTransform.ignorePrefix": {
-						"type": ["string","array"],
+						"type": [
+							"string",
+							"array"
+						],
 						"default": "",
 						"description": "CSS Modules Transform 插件配置忽略匹配前缀,默认为空",
 						"scope": "window"
@@ -50,8 +53,8 @@
 				"title": "类名转换(cssModulesTransform)"
 			}
 		],
-		"menus":{
-			"editor/context":[
+		"menus": {
+			"editor/context": [
 				{
 					"when": "resourceLangId =~ /vue|html|react/",
 					"command": "CSS-Modules-transform.cssModulesTransform",
@@ -61,12 +64,12 @@
 			]
 		},
 		"keybindings": [
-      {
-        "command": "CSS-Modules-transform.cssModulesTransform",
-        "key": "ctrl+m",
-        "mac": "cmd+m"
-      }
-    ]
+			{
+				"command": "CSS-Modules-transform.cssModulesTransform",
+				"key": "ctrl+m",
+				"mac": "cmd+m"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
