@@ -8,7 +8,7 @@
 		"type": "git",
 		"url": "https://github.com/Java-http/CSS-Modules-transform-vsc"
 	},
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"engines": {
 		"vscode": "^1.44.0"
 	},
@@ -56,7 +56,7 @@
 		"menus": {
 			"editor/context": [
 				{
-					"when": "resourceLangId =~ /vue|html|react/",
+					"when": "resourceLangId =~ /vue|html|react|typescript|javascript/",
 					"command": "CSS-Modules-transform.cssModulesTransform",
 					"alt": "CSS-Modules-transform.cssModulesTransform",
 					"group": "navigation"

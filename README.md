@@ -1,6 +1,6 @@
 # CSS-Modules-transform
 
-- 支持`jsx`,`html`格式
+- 支持`html`,`ts`,`tsx`,`js`,`jsx`格式
 - 可配置参数
 
 ## 使用方法
