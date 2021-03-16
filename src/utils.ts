@@ -35,7 +35,7 @@ export function transform(str:string,conf: ReturnType<typeof getConf>){
   const {styleVariable,ignorePrefix} = conf;
   const className = /react/.test(vscode.window.activeTextEditor?.document.languageId + '') ? 'className' : 'class';
 
-  return str.replace(new RegExp(`(${className})\\s*=\\s*"([\\w\\s-]+)"`,"g"),(_,$1,$2)=>{
+  return str.replace(new RegExp(`(${className})\\s*=\\s*["']([\\w\\s-]+)["']`,"g"),(_,$1,$2)=>{
     let re='';
     let arr=[];
     let className = $1;
