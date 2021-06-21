@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.0.6] - 2021-06-21
+### Update
+- 修复单引号没有转换问题
+
 ## [0.0.5] - 2020-10-20
 ### Update
 - 增加支持`javascript`,`typescript`语言类型
