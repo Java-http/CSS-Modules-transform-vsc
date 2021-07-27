@@ -1,5 +1,5 @@
 /** 默认Style变量 */
-export const STYLE_VARIABLE = 'Style';
+export const STYLE_VARIABLE = 'style';
 
 /** 忽略转换类名前缀 */
 export const IGNORE_PREFIX='';
