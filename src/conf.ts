@@ -5,4 +5,4 @@ export const STYLE_VARIABLE = 'style';
 export const IGNORE_PREFIX='';
 
 // Transform Type [camelCase, snake_case, kebab-case]
-export const TRANSFORM_TYPE = 'kebab-case';
+export const TRANSFORM_TYPE = 'camelCase';
