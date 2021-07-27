@@ -45,6 +45,18 @@
 						"scope": "window"
 					}
 				}
+			},
+			{
+				"title": "CSS Modules Transform Transform types",
+				"properties": {
+					"conf.cssModuleTransform.transformType": {
+						"type": "string",
+						"default": "camelCase",
+						"description": "CSS Modules Transform transform types",
+						"available": ["camelCase", "snake_case", "kebab-case"],
+						"scope": "window"
+					}
+				}
 			}
 		],
 		"commands": [
