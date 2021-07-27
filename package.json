@@ -79,6 +79,9 @@
 		"pretest": "npm run compile && npm run lint",
 		"test": "node ./out/test/runTest.js"
 	},
+	"dependencies": {
+		"change-case": "^4.1.2"
+	},
 	"devDependencies": {
 		"@types/vscode": "^1.44.0",
 		"@types/glob": "^7.1.1",
