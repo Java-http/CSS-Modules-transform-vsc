@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.1.6] - 2021-07-27
+### Added
+- 1.Transform types [camelCase, snake_case, kebab-case]
+
 ## [0.0.6] - 2021-06-21
 ### Update
 - 修复单引号没有转换问题

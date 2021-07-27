@@ -21,10 +21,14 @@
 
 - `conf.cssModuleTransform.styleVariable` 
   - 类型: `string` 
-  - 默认: "Style"
+  - 默认: "style"
 - `conf.cssModuleTransform.ignorePrefix` 
   - 类型: `string` | `string[]` 
   - 默认为空
+- `conf.cssModuleTransform.transformType` 
+  - type: `string`
+  - default: "camelCase"
+  - available: camelCase, snake_case, kebab-case
 
 ![Jietu20200425-192616副本.gif](https://i.loli.net/2020/04/25/C4wdNUoa5BLA1q6.gif)
 
