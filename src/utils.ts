@@ -1,5 +1,15 @@
 import * as vscode from 'vscode';
-import {STYLE_VARIABLE,IGNORE_PREFIX} from './conf';
+import {
+  STYLE_VARIABLE,
+  IGNORE_PREFIX,
+  TRANSFORM_TYPE
+} from './conf';
+
+import {
+  camelCase,
+  snakeCase,
+  headerCase
+} from 'change-case';
 
 /** 去除首尾空格以及中间多余空格 */
 export function trim(str:string){
@@ -17,12 +27,15 @@ export function matchPrefix(ignorePrefix:string|string[],word:string):boolean{
 
 /** 获取配置 */
 export function getConf(){
-  const styleVariable = vscode.workspace.getConfiguration().get('conf.cssModuleTransform.styleVariable',STYLE_VARIABLE);
-  const ignorePrefix = vscode.workspace.getConfiguration().get('conf.cssModuleTransform.ignorePrefix',IGNORE_PREFIX);
+  const config = vscode.workspace.getConfiguration();
+  const styleVariable = config.get('conf.cssModuleTransform.styleVariable',STYLE_VARIABLE);
+  const ignorePrefix = config.get('conf.cssModuleTransform.ignorePrefix',IGNORE_PREFIX);
+  const transformType = config.get('conf.cssModuleTransform.transformType',TRANSFORM_TYPE);
 
   return {
     styleVariable,
-    ignorePrefix
+    ignorePrefix,
+    transformType
   };
 }
 
@@ -32,7 +45,7 @@ export function getConf(){
  * @param conf 配置
  */
 export function transform(str:string,conf: ReturnType<typeof getConf>){
-  const {styleVariable,ignorePrefix} = conf;
+  const {styleVariable,ignorePrefix,transformType} = conf;
   const className = /react/.test(vscode.window.activeTextEditor?.document.languageId + '') ? 'className' : 'class';
 
   return str.replace(new RegExp(`(${className})\\s*=\\s*['"]([\\w\\s-]+)['"]`,"g"),(_,$1,$2)=>{
@@ -45,12 +58,19 @@ export function transform(str:string,conf: ReturnType<typeof getConf>){
 
     arr=trim(value).split(" ");
 
-    // 单个类名的情况
+    // 单个类名的情况 - signle class
     if(arr.length===1){
       if(matchPrefix(ignorePrefix,arr[0])) {
         re = `${className}="${arr[0]}"`;
-      }else if(/-/.test(arr[0])){
-        re = `${className}={${styleVariable}["${arr[0]}"]}`;
+      }else if(/-/.test(arr[0])||/_/.test(arr[0])){
+        // default - camelCase
+        re = `${className}={${styleVariable}.${camelCase(arr[0])}}`;
+        if(transformType === 'kebab-case') {
+          re = `${className}={${styleVariable}["${headerCase(arr[0])}"]}`;
+        }   
+        if(transformType === 'snake_case') {
+          re = `${className}={${styleVariable}.${snakeCase(arr[0])}}`;
+        }   
       }else{
         re = `${className}={${styleVariable}.${arr[0]}}`;
       }
@@ -58,14 +78,22 @@ export function transform(str:string,conf: ReturnType<typeof getConf>){
       return re;
     }
     
-    // 多个类名的情况
+    // 多个类名的情况 - multiple classes
     let isAllIgnore = true;
     let str=arr.map((item:string)=>{
       if(matchPrefix(ignorePrefix,item)) {
         return item;
-      }else if(/-/.test(item)){
+      }else if(/-/.test(item)||/_/.test(item)){
         isAllIgnore = false;
-        return `\${${styleVariable}["${item}"]}`;
+        // default - camelCase
+        let value = `\${${styleVariable}.${camelCase(item)}}`;
+        if(transformType === 'kebab-case') {
+          value = `\${${styleVariable}["${headerCase(item)}"]}`;
+        }   
+        if(transformType === 'snake_case') {
+          value = `\${${styleVariable}.${snakeCase(item)}}`;
+        }  
+        return value;
       }else{
         isAllIgnore = false;
         return `\${${styleVariable}.${item}}`;

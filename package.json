@@ -1,5 +1,5 @@
 {
-	"name": "CSS-Modules-transform",
+	"name": "css-modules-transform",
 	"displayName": "CSS-Modules-transform",
 	"description": "css modules transform 用于将 css 转换为 css modules语法",
 	"icon": "icon.png",
@@ -45,6 +45,18 @@
 						"scope": "window"
 					}
 				}
+			},
+			{
+				"title": "CSS Modules Transform Transform types",
+				"properties": {
+					"conf.cssModuleTransform.transformType": {
+						"type": "string",
+						"default": "camelCase",
+						"description": "CSS Modules Transform transform types",
+						"available": ["camelCase", "snake_case", "kebab-case"],
+						"scope": "window"
+					}
+				}
 			}
 		],
 		"commands": [
@@ -78,6 +90,9 @@
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
 		"test": "node ./out/test/runTest.js"
+	},
+	"dependencies": {
+		"change-case": "^4.1.2"
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.44.0",
