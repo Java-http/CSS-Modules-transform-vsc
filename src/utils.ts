@@ -26,6 +26,11 @@ export function getConf(){
   };
 }
 
+/** 获取括号 */
+function getBrackets(str:string,express="="){
+  return express === '=' ? str : '';
+}
+
 /**
  * 正则匹配转换
  * @param str 选中文本
@@ -34,25 +39,27 @@ export function getConf(){
 export function transform(str:string,conf: ReturnType<typeof getConf>){
   const {styleVariable,ignorePrefix} = conf;
   const className = /react/.test(vscode.window.activeTextEditor?.document.languageId + '') ? 'className' : 'class';
+  const reg = new RegExp(`(${className})\\s*([=:])\\s*['"]([\\w\\s-]+)['"]`,"g"); // /(class)\s*([=:])\s*['"]([\w\s-]+)['"]/g
 
-  return str.replace(new RegExp(`(${className})\\s*=\\s*['"]([\\w\\s-]+)['"]`,"g"),(_,$1,$2)=>{
+  return str.replace(reg,(_,$1,$2,$3)=>{
     let re='';
     let arr=[];
     let className = $1;
-    let value=$2;
+    let express = $2;
+    let value=$3;
 
-    if(trim(value)==='') {return `${className}=""`;};
+    if(trim(value)==='') {return `${className}${express}""`;};
 
     arr=trim(value).split(" ");
 
     // 单个类名的情况
     if(arr.length===1){
       if(matchPrefix(ignorePrefix,arr[0])) {
-        re = `${className}="${arr[0]}"`;
+        re = `${className}${express}"${arr[0]}"`;
       }else if(/-/.test(arr[0])){
-        re = `${className}={${styleVariable}["${arr[0]}"]}`;
+        re = `${className}${express}${getBrackets('{',express)}${styleVariable}["${arr[0]}"]${getBrackets('}',express)}`;
       }else{
-        re = `${className}={${styleVariable}.${arr[0]}}`;
+        re = `${className}${express}${getBrackets('{',express)}${styleVariable}.${arr[0]}${getBrackets('}',express)}`;
       }
 
       return re;
@@ -73,9 +80,9 @@ export function transform(str:string,conf: ReturnType<typeof getConf>){
     }).join(" ");
 
     if(isAllIgnore){
-      re = `${className}="${str}"`;
+      re = `${className}${express}"${str}"`;
     }else{
-      re = `${className}={\`${str}\`}`;
+      re = `${className}${express}${getBrackets('{',express)}\`${str}\`${getBrackets('}',express)}`;
     }
 
     return re;
